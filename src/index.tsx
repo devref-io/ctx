@@ -6,10 +6,14 @@ import {
   PropsWithChildren,
 } from "react";
 
+const UninitializedContextMark = Symbol("uninitialized");
+
 export function createContext<T>(
   setup: () => T
 ): [FC<PropsWithChildren>, () => T] {
-  const Context = nativeCreateContext<T | null>(null);
+  const Context = nativeCreateContext<T | typeof UninitializedContextMark>(
+    UninitializedContextMark
+  );
 
   function Provider({ children }: PropsWithChildren) {
     const value = setup();
@@ -18,7 +22,7 @@ export function createContext<T>(
 
   const use = () => {
     const value = useContext(Context);
-    if (!value) {
+    if (value == UninitializedContextMark) {
       throw new Error("Missing context provider");
     }
     return value;
