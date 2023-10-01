@@ -6,7 +6,7 @@ import {
   PropsWithChildren,
 } from "react";
 
-export function createContext<T extends {}>(
+export function createContext<T>(
   setup: () => T
 ): [FC<PropsWithChildren>, () => T] {
   const Context = nativeCreateContext<T | null>(null);

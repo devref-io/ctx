@@ -1,6 +1,6 @@
 {
   "name": "@devref/ctx",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An easy to use, alternative API for React's createContext",
   "author": "Gabriel Heinrich <https://github.com/gabrielheinrich>",
   "license": "MIT",
